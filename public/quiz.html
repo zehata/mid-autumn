@@ -164,9 +164,9 @@
 			}
 		}
 		function finito(correctanswers){
-			firebase.database().ref('leaderboard/').set({
-				eval(username): correctanswers
-			})
+			var info = {};
+			info[username] = correctanswers;
+			firebase.database().ref('leaderboard/').update(info);
 		}
 	</script>
 </body>

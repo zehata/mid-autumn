@@ -42,7 +42,7 @@ app.get('/auth/google/callback',
 ));
 
 app.get('/',function(req, res){
-  res.sendfile(__dirname+'./public/index.html');
+  res.sendfile(__dirname+'/public/index.html');
 });
 
 app.get('/login', function(req, res){
@@ -60,7 +60,7 @@ app.get('/logout', function (req, res){
 
 app.get('/quiz', function (req,res){
 	app.use(express.static('public'));
-	res.sendFile('public/quiz.html', {root: __dirname });
+	res.sendfile('public/quiz.html', {root: __dirname });
 });
 
 function ensureAuthenticated(req, res, next){

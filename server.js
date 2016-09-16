@@ -61,7 +61,7 @@ app.get('/quiz', function (req,res){
 });
 
 app.get('/getuserinfo', function (req,res){
-	app.send(req.user.displayName);
+	res.send(req.user.displayName);
 });
 
 function ensureAuthenticated(req, res, next){

@@ -164,6 +164,8 @@
 			}
 		}
 		function finito(correctanswers){
+			document.getElementById("next").innerHTML = "Leaderboard";
+			document.getElementById("next").addEventListener("click", window.location.href="/leaderboard.html");
 			var info = {};
 			info[username] = correctanswers;
 			firebase.database().ref('leaderboard/').update(info);

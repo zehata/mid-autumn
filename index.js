@@ -71,4 +71,4 @@ function ensureAuthenticated(req, res, next){
 // 	res.redirect('/login');
 }
 
-app.listen(process.env.PORT || 8888);
+app.listen(process.env.PORT);

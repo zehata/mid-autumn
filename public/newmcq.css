@@ -6,12 +6,12 @@
 }
 body{
 	overflow-x: hidden;
-	background-color: #eee;
+	background-color: #c9e6f2;
 	user-select: none;
 }
 .bar{
 	position: fixed;
-	background-color: #c9e6f2;
+	background-color: #c9d2f2;
 	height:50px;
 	width:100vw;
  	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);

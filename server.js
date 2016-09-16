@@ -1,4 +1,5 @@
 var express = require('express');
+var session = require('express-session');
 var app = express();
 var questions = require('./public/questions.js');
 var passport = require('passport');

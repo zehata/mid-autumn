@@ -42,7 +42,7 @@ app.get('/auth/google/callback',
 ));
 
 app.get('/', function (req, res) {
-	res.sendFile('public/index.html', {root: __dirname })
+	res.sendFile('public/index.html', {root: __dirname });
 });
 
 app.get('/login', function(req, res){
@@ -50,7 +50,7 @@ app.get('/login', function(req, res){
 });
 
 app.get('/account', ensureAuthenticated, function (req, res){
-	res.sender('account', {user: req.user})
+	res.sender('account', {user: req.user});
 });
 
 app.get('/logout', function (req, res){

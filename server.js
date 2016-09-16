@@ -49,6 +49,11 @@ app.get('/logout', function (req, res){
 	res.redirect('/');
 });
 
+app.get('/auth/google/callback',
+			 passport.authenticate('google', { successRedirect: '/quiz', failureRedirect: '/login'
+	}
+));
+
 app.get('/quiz', function (req,res){
 	app.use(express.static('public'));
 	res.sendfile('public/quiz.html', {root: __dirname });

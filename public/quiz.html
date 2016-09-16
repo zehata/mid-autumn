@@ -165,7 +165,7 @@
 		}
 		function finito(correctanswers){
 			firebase.database().ref('leaderboard/').set({
-				username: correctanswers
+				eval(username): correctanswers
 			})
 		}
 	</script>

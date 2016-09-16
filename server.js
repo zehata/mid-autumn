@@ -17,9 +17,9 @@ passport.deserializeUser(function (obj,done){
 //   credentials (in this case, an accessToken, refreshToken, and Google
 //   profile), and invoke a callback with a user object.
 passport.use(new GoogleStrategy({
-    clientID: "658338849323-rh74q0mk9e43pvd6gua16u9oqdd9mh6k.apps.googleusercontent.com",
-    clientSecret: "Hx-wsaCau-bxHNEiiUaiI0AY",
-    callbackURL: "http://port-8000.nodejs-zehata559500.codeanyapp.com/auth/google/callback"
+    clientID: "658338849323-ojh4gtakg7duk5hdpmuk71odf2glf1fn.apps.googleusercontent.com",
+    clientSecret: "7QBFkd3hEiW3W5h3ZXbi7G0h",
+    callbackURL: "https://mid-autumn.herokuapp.com/auth/google/callback"
   },
   function(request, accessToken, refreshToken, profile, done) {
 		process.nextTick(function(){

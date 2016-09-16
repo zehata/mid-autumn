@@ -3,8 +3,20 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Mid-Autumn quiz</title>
+	<title>Mid-Autumn Quiz</title>
 	<link rel="stylesheet" href="newmcq.css">
+	<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBM8mkZvYX64GLp1izsfaWO90cgxezVs58",
+    authDomain: "midautumn-143513.firebaseapp.com",
+    databaseURL: "https://midautumn-143513.firebaseio.com",
+    storageBucket: "midautumn-143513.appspot.com",
+    messagingSenderId: "658338849323"
+  };
+  firebase.initializeApp(config);
+</script>
 	<script
   src="https://code.jquery.com/jquery-3.1.0.min.js"
   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
@@ -14,7 +26,7 @@
 </head>
 <body onload="onload()">
 	<div class="bar">
-	<div id="bartext">Mid-Autumn quiz</div>
+	<div id="bartext">Mid-Autumn Quiz</div>
 	</div>
 	<br/>
 	<br/>
@@ -31,6 +43,7 @@
 		</div>
 	</div>
 	<script>
+	var username;
     var attempts = 0;
 		var question;
     var attemptedquestions = [];
@@ -69,7 +82,7 @@
 				type: "GET",
 				url:"https://mid-autumn.herokuapp.com/getuserinfo",
 				success:function(data){
-					alert(data);
+					username = data;
 				}
 			});
       loadquestion();
@@ -103,6 +116,7 @@
 						setTimeout(function(){lookup("answerwrong"+option).style.opacity = "1";},1);
             if (attempts > 3){
               alert("You have scored " + correctanswers + " out of 5 questions!");
+              finito();
               localStorage.removeItem("attempts");
               localStorage.removeItem("correctanswers");
               localStorage.removeItem("attempted");
@@ -119,6 +133,7 @@
 						lookup("option"+option).innerHTML = JSON.parse(question)["option"+option] + "<img class='correct' id='answercorrect' src='correct.png' style='display:inline'/><br/><br/>";
             if (attempts > 3){
               alert("You have scored " + correctanswers + " out of 5 questions!");
+              finito();
               localStorage.removeItem("attempts");
               localStorage.removeItem("correctanswers");
               localStorage.removeItem("attempted");
@@ -147,6 +162,12 @@
 				}
 				selection = option;
 			}
+		}
+		function finito(){
+			firebase.database().ref('leaderboard/').set({
+				user: username,
+				score: correctanswers
+			})
 		}
 	</script>
 </body>

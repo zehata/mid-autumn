@@ -164,8 +164,8 @@
 			}
 		}
 		function finito(correctanswers){
-			firebase.database().ref('leaderboard/'+username).set({
-				score: correctanswers
+			firebase.database().ref('leaderboard/').set({
+				username: correctanswers
 			})
 		}
 	</script>

@@ -5,8 +5,6 @@ var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var favicon = require('serve-favicon');
 
-app.use(favicon(__dirname + '/public/favicon.ico'));
-
 passport.serializeUser(function (user,done){
 	done(null,user);
 });

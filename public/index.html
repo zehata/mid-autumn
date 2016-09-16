@@ -3,11 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <title>Mid-autumn quiz!</title>
-  <link rel="shortcut icon" href="/favicon.ico">
+  <style>
+  	.container {
+    display: table;
+    height: 97%;
+    position: absolute;
+    overflow: hidden;
+    width: 97%;
+}
+.helper {
+    #position: absolute;
+    #top: 50%;
+    display: table-cell;
+    vertical-align: middle;
+}
+.content {
+    #position: relative;
+    #top: -50%;
+    margin: 0 auto;
+    width: 300px;
+    height: 70px;
+    border-radius: 3px;
+    background-color: white;
+}
+  </style>
 </head>
-<body onload="login();">
-  <div>Logging you in with Google</div>
-  <script>
+<body style="background-color:#eee;" onload="login();">
+<div class="container">
+    <div class="helper">
+        <div class="content">
+            <img style=" height:70px;" src="loading.gif"/>
+            <div style=" display:inline; position: relative; top:-30px; color:#333; font-family: Roboto, Segoe UI Semilight, Helvetica, Segoe UI, Arial; width:200px; height:70px;">Logging you in with Google</div>
+        </div>
+    </div>
+</div>
+	  <script>
     function login(){
       window.location.href="/auth/google";
     }

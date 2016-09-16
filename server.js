@@ -39,11 +39,8 @@ app.get('/auth/google',
 ));
 
 app.get('/',function(req, res){
+	app.use(express.static('public'));
   res.sendfile(__dirname+'/public/index.html');
-});
-
-app.get('/loading',function(req,res){
-	res.sendfile(__dirname+'public/loading.gif');
 });
 
 app.get('/login', function(req, res){

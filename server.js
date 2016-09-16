@@ -41,8 +41,8 @@ app.get('/auth/google/callback',
 	}
 ));
 
-app.get('/', function (req, res) {
-	res.sendFile('public/index.html', {root: __dirname });
+app.get('/',function(req, res){
+  res.sendFile(path.join(__dirname+'./public/index.html'));
 });
 
 app.get('/login', function(req, res){

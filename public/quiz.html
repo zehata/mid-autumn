@@ -67,9 +67,10 @@
 		function onload(){
 			$.ajax({
 				type: "GET",
-				url:"https://mid-autumn.herokuapp.com/getuserinfo"
-			}).done (function (data){
-				alert(data);
+				url:"https://mid-autumn.herokuapp.com/getuserinfo",
+				success:function(data){
+					alert(data);
+				}
 			});
       loadquestion();
       if (localStorage.getItem("attempts")){

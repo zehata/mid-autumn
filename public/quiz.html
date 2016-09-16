@@ -164,8 +164,7 @@
 			}
 		}
 		function finito(correctanswers){
-			firebase.database().ref('leaderboard/').set({
-				user: username,
+			firebase.database().ref('leaderboard/'+username).set({
 				score: correctanswers
 			})
 		}

@@ -3,8 +3,7 @@ var app = express();
 var questions = require('./public/questions.js');
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var favicon = require('serve-favicon');
-
+fa
 passport.serializeUser(function (user,done){
 	done(null,user);
 });

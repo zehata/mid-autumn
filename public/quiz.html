@@ -65,6 +65,12 @@
       localStorage.setItem("attempted",JSON.stringify(attemptedquestions));
     }
 		function onload(){
+			$.ajax({
+				type: "GET",
+				url:"https://mid-autumn.herokuapp.com"
+			}).done (function (data){
+				alert(data);
+			});
       loadquestion();
       if (localStorage.getItem("attempts")){
         attempts = Number(localStorage.getItem("attempts"));

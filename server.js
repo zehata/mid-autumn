@@ -36,21 +36,12 @@ app.get('/auth/google',
 				['https://www.googleapis.com/auth/plus.login']}
 ));
 
-app.get('/auth/google/callback',
-			 passport.authenticate('google', { successRedirect: '/quiz', failureRedirect: '/login'
-	}
-));
-
 app.get('/',function(req, res){
   res.sendfile(__dirname+'/public/index.html');
 });
 
 app.get('/login', function(req, res){
 	res.sender('login',{user:req.user});
-});
-
-app.get('/account', ensureAuthenticated, function (req, res){
-	res.sender('account', {user: req.user});
 });
 
 app.get('/logout', function (req, res){

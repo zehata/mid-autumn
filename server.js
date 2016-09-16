@@ -28,6 +28,7 @@ passport.use(new GoogleStrategy({
   }
 ));
 
+app.use( session({ secret: 'cookie_secret'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -57,6 +58,10 @@ app.get('/auth/google/callback',
 app.get('/quiz', function (req,res){
 	app.use(express.static('public'));
 	res.sendfile('public/quiz.html', {root: __dirname });
+});
+
+app.get('/getuserinfo', function (req,res){
+	app.send(req.user.displayName);
 });
 
 function ensureAuthenticated(req, res, next){

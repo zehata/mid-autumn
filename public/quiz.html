@@ -163,9 +163,12 @@
 				selection = option;
 			}
 		}
+		function leaders(){
+			window.location.href="/leaderboard.html";
+		}
 		function finito(correctanswers){
 			document.getElementById("next").innerHTML = "Leaderboard";
-			document.getElementById("next").addEventListener("click", window.location.href="/leaderboard.html");
+			document.getElementById("next").addEventListener("click", leaders );
 			var info = {};
 			info[username] = correctanswers;
 			firebase.database().ref('leaderboard/').update(info);

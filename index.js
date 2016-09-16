@@ -68,6 +68,4 @@ function ensureAuthenticated(req, res, next){
 // 	res.redirect('/login');
 }
 
-app.listen(8000, function () {
-  console.log('Example app listening on port 8000!');
-});
+app.listen(process.env.PORT || 8888);

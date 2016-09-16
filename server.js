@@ -42,6 +42,10 @@ app.get('/',function(req, res){
   res.sendfile(__dirname+'/public/index.html');
 });
 
+app.get('/loading',function(req,res){
+	res.sendfile(__dirname+'public/loading.gif');
+})
+
 app.get('/login', function(req, res){
 	res.sender('login',{user:req.user});
 });

@@ -13,4 +13,8 @@ var question12 = JSON.stringify({answer:1, question:"“月亮代表我的心”
 var question13 = JSON.stringify({answer:1, question:"“但愿人长久，千里共婵娟”出自哪位词人之手？",option1:"苏轼 ", option2:"辛弃疾"});
 var question14 = JSON.stringify({answer:1, question:"吃月饼的意义是什么?",option1:"团圆", option2:"幸福"});
 var question15 = JSON. stringify({answer:2, question:"能说会道",option1:"圆", option2:"团"});
-
+var question16 = JSON. stringify({answer:1, question:"中秋节是在每年的？",option1:"八月十五", option2:"九月十六"});
+var question17 = JSON. stringify({answer:2, question:"中秋节吃什么？",option1:"粽子", option2:"月饼"});
+var question18 = JSON. stringify({answer:2, question:"十五的月亮（猜成语）？",option1:"八月十五", option2:"正大光明"});
+var question19 = JSON. stringify({answer:2, question:"外圆正割垂直线，积分开方斜角边。（猜一节日）？",option1:"粽子", option2:"中秋"});
+var question20 = JSON. stringify({answer:2, question:"离人千里得团聚（猜一字）",option1:"中", option2:"秋"});

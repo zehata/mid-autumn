@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Mid-Autumn quiz</title>
+	<link rel="stylesheet" href="newmcq.css">
+	<script
+  src="http://code.jquery.com/jquery-3.1.0.min.js"
+  integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+  crossorigin="anonymous"></script>
+  <script src="questions.js"></script>
+</head>
+<body onload="onload()">
+	<div class="bar">
+	<div id="bartext">Mid-Autumn quiz</div>
+	</div>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<div id="content">
+		<div id="question"></div>
+		<div id="answers">
+			<div onclick="window.location.href='quiz.html';" id="next">Next question</div>
+			<br/>
+			<div id="option1" class="options" onclick="select(1)"></div>
+			<br/>
+			<div id="option2" class="options" onclick="select(2)"></div>
+		</div>
+	</div>
+	<script>
+    var attempts = 0;
+		var question;
+    var attemptedquestions = [];
+		var selection = 0;
+		var answerlocked = 0;
+		function $(object){
+			return document.getElementById(object);
+		}
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    function loadquestion(){
+      if (localStorage.getItem("attempted")){
+          attemptedquestions = JSON.parse(localStorage.getItem("attempted"));
+          if (attemptedquestions.length > 5){
+            attemptedquestions = [];
+          }
+      }
+      var random;
+      var randomized = 0;
+      while(randomized == 0){
+        random = getRandomInt(1,15);
+        randomized = 1;
+        for (var i = 0; i < attemptedquestions.length; i++){
+          if (random == attemptedquestions[i]){
+            randomized = 0;
+          }
+        }
+      }
+      question = eval("question" + random);
+      attemptedquestions.push(random);
+      localStorage.setItem("attempted",JSON.stringify(attemptedquestions));
+    }
+		function onload(){
+      loadquestion();
+      if (localStorage.getItem("attempts")){
+        attempts = Number(localStorage.getItem("attempts"));
+      }
+			$("question").innerHTML = JSON.parse(question).question;
+			$("option1").innerHTML = JSON.parse(question).option1 + "<img class='wrong' id='answerwrong1' src='wrong.png'/>";
+			$("option2").innerHTML = JSON.parse(question).option2 + "<img class='wrong' id='answerwrong2' src='wrong.png'/>";
+			switch(JSON.parse(question).answer){
+				case 1:
+					$("option1").innerHTML = JSON.parse(question).option1 + "<img class='correct' id='answercorrect' src='correct.png'/>";
+				break;
+				case 2:
+					$("option2").innerHTML = JSON.parse(question).option2 + "<img class='correct' id='answercorrect' src='correct.png'/>";
+				break;
+			}
+		}
+		function select(option){
+			if (answerlocked == 0){
+				if (option == selection){
+					answerlocked = 1;
+          $("next").style.display = "block";
+          setTimeout(function(){$("next").style.height="4vh";},1);
+					$("option"+option).style.boxShadow = "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)";
+					$("answercorrect").style.display = "inline";
+					setTimeout(function(){$("answercorrect").style.opacity = "1";},1);
+					if (option != JSON.parse(question).answer){
+						$("option"+option).innerHTML = JSON.parse(question)["option"+option] + "<img class='wrong' id='answerwrong"+option+"' src='wrong.png'/><br/><br/>";
+						$("answerwrong"+option).style.display = "inline";
+						setTimeout(function(){$("answerwrong"+option).style.opacity = "1";},1);
+            if (attempts > 3){
+              alert("You have scored " + correctanswers + " out of 5 questions!");
+              localStorage.removeItem("attempts");
+              localStorage.removeItem("correctanswers");
+              localStorage.removeItem("attempted");
+            } else {
+              attempts += 1;
+            localStorage.setItem("attempts",attempts);
+            }
+					} else {
+            var correctanswers = 0;
+            if (localStorage.getItem("correctanswers")){
+              correctanswers = Number(localStorage.getItem("correctanswers"));
+            }
+            correctanswers += 1;
+						$("option"+option).innerHTML = JSON.parse(question)["option"+option] + "<img class='correct' id='answercorrect' src='correct.png' style='display:inline'/><br/><br/>";
+            if (attempts > 3){
+              alert("You have scored " + correctanswers + " out of 5 questions!");
+              localStorage.removeItem("attempts");
+              localStorage.removeItem("correctanswers");
+              localStorage.removeItem("attempted");
+            } else {
+            localStorage.setItem("correctanswers",correctanswers);
+            attempts += 1;
+            localStorage.setItem("attempts",attempts);
+            }
+					}
+				}
+				else if(selection != 0){
+					$("option"+selection).style.boxShadow = "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)";
+					if (JSON.parse(question).answer == selection){
+						$("option"+selection).innerHTML = JSON.parse(question)["option"+selection] + "<img class='correct' id='answercorrect' src='correct.png'/>";
+					} else {
+						$("option"+selection).innerHTML = JSON.parse(question)["option"+selection] + "<img class='wrong' id='answerwrong' src='wrong.png'/>";
+					}
+				}
+				if (answerlocked == 0){
+					$("option"+option).style.boxShadow = "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)";
+					if (JSON.parse(question).answer == option){
+						$("option"+option).innerHTML = JSON.parse(question)["option"+option] + "<img class='correct' id='answercorrect' src='correct.png'/>" + "<br/>(Press again to confirm your answer)";
+					} else {
+						$("option"+option).innerHTML = JSON.parse(question)["option"+option] + "<img class='wrong' id='answerwrong' src='wrong.png'/>" + "<br/>(Press again to confirm your answer)";
+					}
+				}
+				selection = option;
+			}
+		}
+	</script>
+</body>
+</html>

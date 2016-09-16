@@ -116,7 +116,7 @@
 						setTimeout(function(){lookup("answerwrong"+option).style.opacity = "1";},1);
             if (attempts > 3){
               alert("You have scored " + correctanswers + " out of 5 questions!");
-              finito();
+              finito(correctanswers);
               localStorage.removeItem("attempts");
               localStorage.removeItem("correctanswers");
               localStorage.removeItem("attempted");
@@ -133,7 +133,7 @@
 						lookup("option"+option).innerHTML = JSON.parse(question)["option"+option] + "<img class='correct' id='answercorrect' src='correct.png' style='display:inline'/><br/><br/>";
             if (attempts > 3){
               alert("You have scored " + correctanswers + " out of 5 questions!");
-              finito();
+              finito(correctanswers);
               localStorage.removeItem("attempts");
               localStorage.removeItem("correctanswers");
               localStorage.removeItem("attempted");
@@ -163,7 +163,7 @@
 				selection = option;
 			}
 		}
-		function finito(){
+		function finito(correctanswers){
 			firebase.database().ref('leaderboard/').set({
 				user: username,
 				score: correctanswers

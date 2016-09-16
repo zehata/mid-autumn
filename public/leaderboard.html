@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="leaderboard.css">
+	<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBM8mkZvYX64GLp1izsfaWO90cgxezVs58",
+    authDomain: "midautumn-143513.firebaseapp.com",
+    databaseURL: "https://midautumn-143513.firebaseio.com",
+    storageBucket: "midautumn-143513.appspot.com",
+    messagingSenderId: "658338849323"
+  };
+  firebase.initializeApp(config);
+</script>
+</head>
+<body onload="onload()">
+	<div class="bar">
+	<div id="bartext">Leaderboard</div>
+	</div>
+	<div id="leaderboard">
+	</div>
+	<script>
+		//var leaders = [["Zenon",5],["Hwee Shin",5],["Pi Rong",5]];
+		var leaders = [];
+		function onload(){
+			var topUserPostsRef = firebase.database().ref('/leaderboard').orderByValue();
+			topUserPostsRef.on("value",function(snapshot){
+				var leaderboard = snapshot.val();
+				console.log(leaderboard);
+				for(var key in leaderboard){
+					if (leaderboard.hasOwnProperty(key)){
+						leaders.push([key,leaderboard[key]]);
+					}
+				}
+				for (var i = 0; i < leaders.length; i++){
+					var rank = document.createElement("DIV");
+					rank.className = "ranks";
+					rank.id = "rank"+i;
+					var rankname = document.createElement("SPAN");
+					rankname.className = "rankslist";
+					rankname.innerHTML = (i+1)+". "+leaders[i][0];
+					var rankno = document.createElement("SPAN");
+					rankno.className = "score";
+					rankno.innerHTML = leaders[i][1];
+					document.getElementById("leaderboard").appendChild(rank);
+					document.getElementById("rank"+i).appendChild(rankname);
+					document.getElementById("rank"+i).appendChild(rankno);
+				}
+			});
+		}
+	</script>
+</body>
+</html>

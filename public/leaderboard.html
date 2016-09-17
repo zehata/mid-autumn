@@ -24,7 +24,6 @@
 	<div id="leaderboard">
 	</div>
 	<script>
-		//var leaders = [["Zenon",5],["Hwee Shin",5],["Pi Rong",5]];
 		var leaders = [];
 		function onload(){
 			var topUserPostsRef = firebase.database().ref('/leaderboard').orderByValue();
@@ -33,7 +32,7 @@
 				console.log(leaderboard);
 				for(var key in leaderboard){
 					if (leaderboard.hasOwnProperty(key)){
-						leaders.push([key,leaderboard[key]]);
+						leaders.unshift([key,leaderboard[key]]);
 					}
 				}
 				for (var i = 0; i < leaders.length; i++){

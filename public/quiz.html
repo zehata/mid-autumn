@@ -115,6 +115,10 @@
 						lookup("answerwrong"+option).style.display = "inline";
 						setTimeout(function(){lookup("answerwrong"+option).style.opacity = "1";},1);
             if (attempts > 3){
+            	var correctanswers = 0;
+            	if(localStorage.getItem("correctanswers")){
+            		correctanswers =Number(localStorage.getItem("correctanswers");
+            	}
               alert("You have scored " + correctanswers + " out of 5 questions!");
               finito(correctanswers);
               localStorage.removeItem("attempts");
